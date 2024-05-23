@@ -13,7 +13,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+  env_var: ${{ vars.ENV_NAME }}
 
 jobs:
   display-variables:
@@ -25,4 +25,4 @@ jobs:
       run: |
         echo "repository variable : $REPOSITORY_VAR"
       env:
-        REPOSITORY_VAR: ${{ env.env_name }}
+        REPOSITORY_VAR: ${{ vars.ENV_NAME }}
