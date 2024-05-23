@@ -11,7 +11,7 @@ on:
 
 jobs:
   display-variables:
-    name: My super duper test input - ${{ inputs.environment }} ; ENV ${{ env.ENV_NAME }}
+    name: 'My super duper test input - ${{ inputs.environment }} ; ENV ${{ env.ENV_NAME }}'
     runs-on: ubuntu-latest
 
     steps:
