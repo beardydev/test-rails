@@ -12,7 +12,8 @@ on:
 jobs:
   display-variables:
     name: 'My super duper test input - ${{ inputs.environment }} ; ENV ${{ env.MY_SECRET }} ; VARS ${{ vars.ENV_NAME }}'
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.environment }}
+    environment: production
 
     steps:
     - name: Use variables
