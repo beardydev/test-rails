@@ -8,12 +8,6 @@ on:
         type: environment
         required: true
         default: Test
-        options:
-          - Test
-
-env:
-  # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.ENV_NAME }}
 
 jobs:
   display-variables:
@@ -23,6 +17,4 @@ jobs:
     steps:
     - name: Use variables
       run: |
-        echo "repository variable : $REPOSITORY_VAR"
-      env:
-        REPOSITORY_VAR: ${{ vars.ENV_NAME }}
+        echo ${{ env.ENV_NAME }}
