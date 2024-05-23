@@ -13,11 +13,10 @@ jobs:
   display-variables:
     name: My super duper test input - ${{ inputs.environment }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
 
     steps:
     - name: Use variables
       run: |
-        echo ${{ env.ENV_NAME }}
+        echo ${{ env.MY_SECRET }}
         echo ${{ inputs.environment }}
         echo ${{ vars.ENV_NAME }}
