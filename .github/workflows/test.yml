@@ -11,10 +11,11 @@ on:
 
 jobs:
   display-variables:
-    name: "Test"
+    name: My super duper test input - ${{ inputs.environment }} ; ENV ${{ env.ENV_NAME }}
     runs-on: ubuntu-latest
 
     steps:
     - name: Use variables
       run: |
         echo ${{ env.ENV_NAME }}
+        echo ${{ inputs.environment }}
