@@ -8,6 +8,10 @@ on:
         type: environment
         required: true
         default: Test
+      skip-tests:
+        description: 'Skip tests?'
+        type: boolean
+        default: false
 
 jobs:
   env-check:
