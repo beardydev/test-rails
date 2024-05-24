@@ -14,15 +14,7 @@ on:
         default: false
 
 jobs:
-  env-check:
-    if: "contains(inputs.environment, 'Prod')"
-    runs-on: ubuntu-latest
-
-    steps:
-      - run: exit 1
-
   test:
-    needs: [env-check]
     if: "!inputs.skip-tests"
     runs-on: ubuntu-latest
     steps:
@@ -31,6 +23,7 @@ jobs:
     
   display-variables:
     needs: [test]
+    if: "!contains(inputs.environment, 'Prod') && (needs.job1.result == 'success' || needs.job1.result == 'skipped)"
     name: My super duper test input - ${{ inputs.environment }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
