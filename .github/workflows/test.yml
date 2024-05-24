@@ -23,7 +23,7 @@ jobs:
     needs: [env-check]
     name: My super duper test input - ${{ inputs.environment }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: inputs.environment
 
     steps:
     - name: Use variables
