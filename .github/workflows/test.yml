@@ -14,6 +14,14 @@ on:
         default: false
 
 jobs:
+  env-check:
+    name: Pre-Prod check
+    runs-on: ubuntu-latest
+    if: "contains(inputs.environment, 'Prod')"
+    steps:
+      - run: echo 'Invalid environment, only pre-prod environments can run this workflow'
+      - run: exit 1
+
   test:
     if: "!inputs.skip-tests"
     runs-on: ubuntu-latest
