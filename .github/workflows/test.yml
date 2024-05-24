@@ -19,8 +19,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - 
-      run: exit 0
+      - run: exit 0
+
+  test:
+    if: "!inputs.skip-tests"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Running tests
     
     
   display-variables:
