@@ -23,7 +23,7 @@ jobs:
     
   display-variables:
     needs: [test]
-    if: "!contains(inputs.environment, 'Prod') && (needs.test.result == 'success' || needs.test.result == 'skipped)"
+    if: ${{ needs.test.result != 'failure' && !contains(inputs.environment, 'Prod') }}
     name: My super duper test input - ${{ inputs.environment }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
