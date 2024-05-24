@@ -19,9 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: exit 0
+      - run: exit 1
 
   test:
+    needs: [env-check]
     if: "!inputs.skip-tests"
     runs-on: ubuntu-latest
     steps:
@@ -29,7 +30,7 @@ jobs:
     
     
   display-variables:
-    needs: [env-check, test]
+    needs: [test]
     name: My super duper test input - ${{ inputs.environment }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
