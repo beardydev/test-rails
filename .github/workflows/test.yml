@@ -15,7 +15,7 @@ on:
 
 jobs:
   env-check:
-    if: "!contains(inputs.environment, 'Prod')"
+    if: "contains(inputs.environment, 'Prod')"
     runs-on: ubuntu-latest
 
     steps:
