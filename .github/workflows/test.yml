@@ -10,7 +10,17 @@ on:
         default: Test
 
 jobs:
+  env-check:
+    if: "!contains(inputs.environment, 'Prod')"
+    runs-on: ubuntu-latest
+
+    steps:
+    - 
+      run: exit 0
+    
+    
   display-variables:
+    needs: [env-check]
     name: My super duper test input - ${{ inputs.environment }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
