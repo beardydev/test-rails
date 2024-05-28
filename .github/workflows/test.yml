@@ -26,8 +26,6 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: core.setFailed('Invalid environment ("${{ inputs.environment }}"), only pre-prod environments can run this workflow')
-      - name: Check passed
-        run: exit 0
 
   test:
     name: Tests
@@ -37,6 +35,9 @@ jobs:
     steps:
       - name: Skip
         if: ${{ inputs.skip-tests }}
+        uses: actions/github-script@v7
+        with:
+          script: core.setFailed('Invalid environment ("${{ inputs.environment }}"), only pre-prod environments can run this workflow')
         run: | 
           echo "Skipping tests"
           exit 0
