@@ -22,7 +22,7 @@ jobs:
       - if: ${{ contains(inputs.environment, 'Prod') }}
         uses: actions/github-script@v7
         with:
-          script: core.setFailed('Invalid environment, only pre-prod environments can run this workflow')
+          script: core.setFailed('Invalid environment ("${{ inputs.environment }}"), only pre-prod environments can run this workflow')
       - run: exit 0
 
   test:
