@@ -13,6 +13,9 @@ on:
         type: boolean
         default: false
 
+env:
+  test-name: ${{ inputs.skip-tests && 'Skipping tests' || 'running tests for github.ref_name branch' }}
+
 jobs:
   env-check:
     name: Pre-Prod check
@@ -26,6 +29,7 @@ jobs:
       - run: exit 0
 
   test:
+    name: ${{ ENV.test-name }}
     needs: env-check
     if: ${{ !inputs.skip-tests }}
 
