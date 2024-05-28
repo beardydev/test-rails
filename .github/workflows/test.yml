@@ -25,7 +25,7 @@ jobs:
         if: contains(inputs.environment, 'Prod')
         run: |
           echo "::error::Invalid environment (\"${{ inputs.environment }}\"), only pre-prod environments can run this workflow"
-          exit 0
+          exit 1
         # uses: actions/github-script@v7
         # with:
         #   script: |
