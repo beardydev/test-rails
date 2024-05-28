@@ -26,7 +26,7 @@ jobs:
   test:
     name: Running tests for ${{ github.ref_name }} branch
     needs: [env-check]
-    if: ${{ !inputs.skip-tests' }}
+    if: ${{ !inputs.skip-tests }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "Running tests"
