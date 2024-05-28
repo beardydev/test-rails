@@ -29,7 +29,7 @@ jobs:
       - run: exit 0
 
   test:
-    name: ${{ env.test-name }}
+    name: ${{ vars.test-name }}
     needs: env-check
     if: ${{ !inputs.skip-tests }}
 
