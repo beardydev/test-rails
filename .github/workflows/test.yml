@@ -13,7 +13,7 @@ on:
         type: boolean
         default: false
 
-run-name: Deploy ${{ github.ref_name }} to ${{ inputs.environment }}
+run-name: Deploy ${{ github.ref_name }} branch to ${{ inputs.environment }} environment
 
 jobs:
   env-check:
