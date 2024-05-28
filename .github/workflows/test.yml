@@ -28,6 +28,8 @@ jobs:
     needs: [env-check]
     if: ${{ !inputs.skip-tests' }}
     runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running tests"
     
   display-variables:
     needs: [test]
