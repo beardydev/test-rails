@@ -13,8 +13,7 @@ on:
         type: boolean
         default: false
 
-env:
-  test-name: ${{ inputs.skip-tests && 'Skipping tests' || 'running tests for github.ref_name branch' }}
+run-name: "${{ !contains(inputs.environment, 'Prod') && 'Deploy $github.head_ref to $inputs.environment' }}"
 
 jobs:
   env-check:
