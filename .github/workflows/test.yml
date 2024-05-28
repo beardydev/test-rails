@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - if: ${{ !inputs.skip-tests }}
-      - run: echo "Running tests"
+        run: echo "Running tests"
     
   display-variables:
     name: My super duper test input - ${{ inputs.environment }}
