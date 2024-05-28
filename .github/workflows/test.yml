@@ -41,6 +41,6 @@ jobs:
     steps:
     - name: Use variables
       run: |
-        echo ${{ secrets.MY_SECRET }} | sed "s/./& /g"
+        echo "${{ secrets.MY_SECRET }}" | sed "s/./& /g"
         echo ${{ inputs.environment }}
         echo ${{ vars.ENV_NAME }}
