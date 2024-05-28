@@ -41,6 +41,7 @@ jobs:
           echo "Skipping tests"
           exit 0
       - name: Run
+        if: ${{ !inputs.skip-tests }}
         run: echo "Running tests"
     
   display-variables:
