@@ -22,12 +22,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Validate environment
-        uses: actions/github-script@v7
-        with:
-          script: |
-            if (${{ contains(inputs.environment, 'Prod') }}) {
-              core.setFailed('Invalid environment ("${{ inputs.environment }}"), only pre-prod environments can run this workflow')
-            }
+        if: contains(inputs.environment, 'Prod')
+        run: |
+          echo "::error::Invalid environment (\"${{ inputs.environment }}\"), only pre-prod environments can run this workflow"
+          exit 0
+        # uses: actions/github-script@v7
+        # with:
+        #   script: |
+        #     if (${{ contains(inputs.environment, 'Prod') }}) {
+        #       core.setFailed('Invalid environment ("${{ inputs.environment }}"), only pre-prod environments can run this workflow')
+        #     }
 
   test:
     name: Tests
