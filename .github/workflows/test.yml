@@ -13,7 +13,7 @@ on:
         type: boolean
         default: false
 
-run-name: Deploy ${{ github.ref_name }} branch to ${{ inputs.environment }}
+run-name: Pre-prod - Deploying ${{ github.ref_name }} branch to ${{ inputs.environment }}
 
 jobs:
   env-check:
@@ -33,13 +33,16 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ !inputs.skip-tests }}
-        run: echo "Running tests"
+      - name: Skipped tests
+        if: ${{ inputs.skip-tests }}
+        run: | 
+          echo "Skipping tests"
+          exit 1
+      - run: echo "Running tests"
     
   display-variables:
     name: My super duper test input - ${{ inputs.environment }}
     needs: [env-check, test]
-    # if: ${{ always() && needs.test.result != 'failure' && needs.env-check.result != 'failure' }}
     environment: ${{ inputs.environment }}
 
     runs-on: ubuntu-latest
