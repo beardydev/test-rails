@@ -37,9 +37,9 @@ jobs:
     steps:
       - name: Skip
         if: ${{ inputs.skip-tests }}
-        run: | 
-          echo "Skipping tests"
-          exit 0
+        uses: actions/github-script@v7
+        with:
+          script: core.info('Skipping tests')
       - name: Run
         if: ${{ !inputs.skip-tests }}
         run: echo "Running tests"
