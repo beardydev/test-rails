@@ -37,7 +37,8 @@ jobs:
     steps:
       - name: Skip
         if: ${{ inputs.skip-tests }}
-        run:
+        run: |
+          echo "::notice::skipping tests"
           exit 0
       - name: Run
         if: ${{ !inputs.skip-tests }}
