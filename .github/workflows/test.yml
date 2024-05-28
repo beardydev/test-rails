@@ -13,7 +13,7 @@ on:
         type: boolean
         default: false
 
-run-name: Deploy ${{ github.head_ref }} to ${{ inputs.environment }}
+run-name: Deploy ${{ github.ref_name }} to ${{ inputs.environment }}
 
 jobs:
   env-check:
@@ -28,14 +28,13 @@ jobs:
       - run: exit 0
 
   test:
-    name: ${{ vars.test-name }}
+    name: Run tests
     needs: env-check
     if: ${{ !inputs.skip-tests }}
 
     runs-on: ubuntu-latest
     steps:
-      - name: Running tests for ${{ github.ref_name }} branch
-        run: echo "Running tests"
+      - run: echo "Running tests"
     
   display-variables:
     name: My super duper test input - ${{ inputs.environment }}
