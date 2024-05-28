@@ -4,34 +4,34 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment to run tests against'
+        description: Environment to run tests against
         type: environment
         required: true
         default: Test
       skip-tests:
-        description: 'Skip tests?'
+        description: Skip tests?
         type: boolean
         default: false
 
 jobs:
   env-check:
     name: Pre-Prod check
+    if: ${{ contains(inputs.environment, 'Prod') }}
     runs-on: ubuntu-latest
-    if: "contains(inputs.environment, 'Prod')"
     steps:
-      - run: echo 'Invalid environment, only pre-prod environments can run this workflow'
-      - run: exit 1
+      - uses: actions/github-script@v7
+        with:
+          script: core.setFailed('Invalid environment, only pre-prod environments can run this workflow')
 
   test:
-    if: "!inputs.skip-tests"
+    name: Running tests for ${{ github.ref_name }} branch
+    needs: [env-check]
+    if: ${{ !inputs.skip-tests' }}
     runs-on: ubuntu-latest
-    steps:
-      - run: echo Running tests
-    
     
   display-variables:
     needs: [test]
-    if: ${{ always() && needs.test.result != 'failure' && !contains(inputs.environment, 'Prod') }}
+    if: ${{ always() && needs.test.result != 'failure' && needs.env-check.result != 'failure' }}
     name: My super duper test input - ${{ inputs.environment }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
@@ -39,6 +39,6 @@ jobs:
     steps:
     - name: Use variables
       run: |
-        echo "${{ secrets.MY_SECRET }}" | sed 's/./& /g'
+        echo ${{ secrets.MY_SECRET }} | sed "s/./& /g"
         echo ${{ inputs.environment }}
         echo ${{ vars.ENV_NAME }}
