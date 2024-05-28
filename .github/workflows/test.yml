@@ -21,24 +21,27 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ contains(inputs.environment, 'Prod') }}
+      - name: Failure
+        if: ${{ contains(inputs.environment, 'Prod') }}
         uses: actions/github-script@v7
         with:
           script: core.setFailed('Invalid environment ("${{ inputs.environment }}"), only pre-prod environments can run this workflow')
-      - run: exit 0
+      - name: Success
+        run: exit 0
 
   test:
-    name: Run tests
+    name: Tests
     needs: env-check
 
     runs-on: ubuntu-latest
     steps:
-      - name: Skipped tests
+      - name: Skipped
         if: ${{ inputs.skip-tests }}
         run: | 
           echo "Skipping tests"
           exit 1
-      - run: echo "Running tests"
+      - name: Run
+        run: echo "Running tests"
     
   display-variables:
     name: My super duper test input - ${{ inputs.environment }}
