@@ -26,13 +26,13 @@ jobs:
       - run: exit 0
 
   test:
-    name: Running tests for ${{ github.ref_name }} branch
     needs: env-check
     if: ${{ !inputs.skip-tests }}
 
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Running tests"
+      - name: Running tests for ${{ github.ref_name }} branch
+        run: echo "Running tests"
     
   display-variables:
     name: My super duper test input - ${{ inputs.environment }}
