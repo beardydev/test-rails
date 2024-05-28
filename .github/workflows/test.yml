@@ -50,7 +50,7 @@ jobs:
     name: Tests
     needs: [env-check, pre-test-check]
 
-    if: ${ !needs.pre-test-check.outputs.skip }}
+    if: ${{ !needs.pre-test-check.outputs.skip }}
 
     runs-on: ubuntu-latest
     steps:
