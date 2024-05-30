@@ -73,6 +73,6 @@ jobs:
         echo ${{ inputs.environment }}
         echo ${{ vars.ENV_NAME }}
         echo ${{ vars.IS_PROD_ENV }}
-    - if: ${{ vars.IS_PROD_ENV }}
+    - if: ${{ vars.IS_PROD_ENV == 'true' }}
       run: |
         echo "I'm prod!"
