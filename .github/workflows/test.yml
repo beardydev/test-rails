@@ -16,16 +16,16 @@ on:
 run-name: Pre-prod - Deploying ${{ github.ref_name }} branch to ${{ inputs.environment }}
 
 jobs:
-  env-check:
-    name: Pre-Prod check
+  # env-check:
+  #   name: Pre-Prod check
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Validate environment
-        if: contains(inputs.environment, 'Prod')
-        run: |
-          echo "::error::Invalid environment (\"${{ inputs.environment }}\"), only pre-prod environments can run this workflow"
-          exit 1
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Validate environment
+  #       if: contains(inputs.environment, 'Prod')
+  #       run: |
+  #         echo "::error::Invalid environment (\"${{ inputs.environment }}\"), only pre-prod environments can run this workflow"
+  #         exit 1
         # uses: actions/github-script@v7
         # with:
         #   script: |
@@ -33,34 +33,34 @@ jobs:
         #       core.setFailed('Invalid environment ("${{ inputs.environment }}"), only pre-prod environments can run this workflow')
         #     }
 
-  pre-test-check:
-    name: Pre-test-check
-    outputs:
-      skip: ${{ inputs.skip-tests }}
+  # pre-test-check:
+  #   name: Pre-test-check
+  #   outputs:
+  #     skip: ${{ inputs.skip-tests }}
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Add annotation
-        if: ${{ inputs.skip-tests }}
-        run: |
-          echo "::notice::skipping tests"
-          exit 0
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Add annotation
+  #       if: ${{ inputs.skip-tests }}
+  #       run: |
+  #         echo "::notice::skipping tests"
+  #         exit 0
 
-  test:
-    name: Tests
-    needs: [env-check, pre-test-check]
+  # test:
+  #   name: Tests
+  #   needs: [env-check, pre-test-check]
 
-    if: ${{ !needs.pre-test-check.outputs.skip }}
+  #   if: ${{ !needs.pre-test-check.outputs.skip }}
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run
-        if: ${{ !inputs.skip-tests }}
-        run: echo "Running tests"
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Run
+  #       if: ${{ !inputs.skip-tests }}
+  #       run: echo "Running tests"
     
   display-variables:
     name: My super duper test input - ${{ inputs.environment }}
-    needs: [env-check, test]
+    # needs: [env-check, test]
     environment: ${{ inputs.environment }}
 
     if: ${{ !cancelled() }}
@@ -72,3 +72,8 @@ jobs:
         echo "${{ secrets.MY_SECRET }}" | sed "s/./& /g"
         echo ${{ inputs.environment }}
         echo ${{ vars.ENV_NAME }}
+        echo ${{ vars.IS_PROD_ENV }}
+            - name: Use variables
+    - if: ${{ vars.IS_PROD_ENV }}
+      run: |
+        echo "I'm prod!"
