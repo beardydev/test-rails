@@ -1,0 +1,64 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/CommentIndentation:
+  AllowForAlignment: true
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+Layout/LineEndStringConcatenationIndentation:
+  EnforcedStyle: indented
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
+Lint/DuplicateBranch:
+  IgnoreLiteralBranches: true
+  IgnoreConstantBranches: true
+Lint/EmptyClass:
+  AllowComments: true
+
+Metrics/AbcSize:
+  Enabled: false
+  Severity: warning
+  Details: >-
+    (Reduce complexity of this)
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/MultilineTernaryOperator:
+  Enabled: false
+Style/Next:
+  EnforcedStyle: always
+Style/NumberedParameters:
+  EnforcedStyle: disallow
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+Style/SymbolArray:
+  EnforcedStyle: percent
+
+AllCops:
+  ExtraDetails: true
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/{rails,rake}'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'Gemfile.lock'
