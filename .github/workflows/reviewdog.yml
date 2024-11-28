@@ -47,7 +47,7 @@ jobs:
       - name: Run RuboCop with reviewdog
         uses: reviewdog/action-rubocop@v2
         with:
-          use_bundler: true
+          rubocop_version: gemfile
+          rubocop_extensions: rubocop-rails:gemfile
           rubocop_flags: '-f json' # Ensure RuboCop outputs in JSON format
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          skip_install: true
