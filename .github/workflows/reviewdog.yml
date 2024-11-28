@@ -36,6 +36,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1' # Specify your Ruby version here
       - uses: reviewdog/action-rubocop@v2
         with:
           use_bundler: true
+          skip_install: true
