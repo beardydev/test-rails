@@ -36,6 +36,10 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'erb_lint', require: false
+gem 'rubocop', '~> 1.60.0'
+gem 'rubocop-performance', '~> 1.20.2'
+gem 'rubocop-rails', '~> 2.23.1'
+gem 'rubocop-rspec', '~> 2.26.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
