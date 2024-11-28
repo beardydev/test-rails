@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-misspell@v1
         with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           level: warning
           locale: "UK"
 
@@ -29,7 +29,7 @@ jobs:
           ruby-version: '3.1.4' # Specify your Ruby version here
       - uses: tk0miya/action-erblint@v1
         with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           level: warning
           use_bundler: true
 
@@ -42,7 +42,12 @@ jobs:
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           ruby-version: '3.1.4' # Specify your Ruby version here
-      - uses: reviewdog/action-rubocop@v2
+      - name: Install Bundler
+        run: gem install bundler
+      - name: Run RuboCop with reviewdog
+        uses: reviewdog/action-rubocop@v2
         with:
           use_bundler: true
+          rubocop_flags: '-f json' # Ensure RuboCop outputs in JSON format
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           skip_install: true
