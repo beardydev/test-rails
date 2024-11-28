@@ -1,6 +1,5 @@
 require:
   - rubocop-rails
-  - rubocop-rspec
   - rubocop-performance
 
 Layout/ArgumentAlignment:
@@ -38,21 +37,6 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Enabled: false
 
-RSpec/ExampleLength:
-  Enabled: false
-RSpec/ImplicitExpect:
-  EnforcedStyle: should
-RSpec/MessageSpies: # disabled cos we struggled to implement. Next dev welcome to try ;-)
-  Enabled: false
-RSpec/MultipleExpectations:
-  Enabled: false
-RSpec/MultipleMemoizedHelpers:
-  Max: 6
-RSpec/NamedSubject: # disabled cos we struggled to implement. Next dev welcome to try ;-)
-  Enabled: false
-RSpec/VerifiedDoubleReference:
-  EnforcedStyle: string
-
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Style/FrozenStringLiteralComment:
@@ -68,10 +52,6 @@ Style/RescueStandardError:
 Style/SymbolArray:
   EnforcedStyle: percent
 
-# Deprecated Specs
-RSpec/FilePath: # will be deprecated in rubocop-rspec v3.0
-  Enabled: false
-
 AllCops:
   ExtraDetails: true
   NewCops: enable
@@ -82,6 +62,3 @@ AllCops:
     - 'bin/{rails,rake}'
     - !ruby/regexp /old_and_unused\.rb$/
     - 'Gemfile.lock'
-    - 'app/helpers/funding_application_helper.rb'
-    - 'lib/apis/salesforce/salesforce_api.rb'
-    - 'lib/generators/project/project_generator.rb'
